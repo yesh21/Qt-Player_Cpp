@@ -31,6 +31,7 @@
 #include <QFrame>
 #include "player_layout.h"
 #include "volume.h"
+#include "video_slider.h"
 
 using namespace std;
 
@@ -166,6 +167,12 @@ int main(int argc, char *argv[]) {
     muteButton->connect(muteButton, SIGNAL(mute(bool)), player, SLOT(setMuted(bool)));
     muteButton->connect(muteButton, SIGNAL(moveSlider(int)), volumeSlider, SLOT (moveSlider(int)));
 
+    VideoSlider *videoSlider = new VideoSlider(buttonWidget);
+
+    player->connect(player, SIGNAL(durationChanged(qint64)), videoSlider, SLOT (SetRange(qint64)));
+    player->connect(player, SIGNAL(positionChanged(qint64)), videoSlider, SLOT (SetValue(qint64)));
+    videoSlider->connect(videoSlider, SIGNAL(valueChanged(int)), player, SLOT (SetPosition(int)));
+
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
@@ -181,6 +188,7 @@ int main(int argc, char *argv[]) {
     top->addWidget(videoScroller);
     top->addWidget(muteButton);
     top->addWidget(volumeSlider);
+    top->addWidget(videoSlider);
 
 
     // showtime!

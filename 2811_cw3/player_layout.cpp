@@ -26,6 +26,7 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             QVideoWidget *videoWidget = dynamic_cast<QVideoWidget *>(o->widget());
             VolumeSlider *volumeSlider = dynamic_cast<VolumeSlider *>(o->widget());
             VolumeButton *muteButton = dynamic_cast<VolumeButton *>(o->widget());
+            QSlider *videoSlider = dynamic_cast<QSlider *>(o->widget());
             if(qw){
                 qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -39,6 +40,9 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             }
             else if(volumeSlider){
                 volumeSlider->setGeometry(r.width()-205+r.x(),(0.625)*r.height()-30+5+r.y(),200, 30);
+            }
+            else if(videoSlider){
+                videoSlider->setGeometry(35+r.x(),(0.625)*r.height()+5-30+r.y(),r.width()-310, 30);
             }
         }
         catch (bad_cast) {
