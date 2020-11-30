@@ -45,6 +45,7 @@ public slots:
 
     // start playing this ButtonInfo
     void jumpTo (TheButtonInfo* button);
+    void SetPosition(int position);
     void skipBack(bool skip);
     void skipForward(bool skip);
     void playButton();
