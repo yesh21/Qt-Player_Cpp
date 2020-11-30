@@ -30,6 +30,7 @@
 #include <QScrollArea>
 #include <QFrame>
 #include "player_layout.h"
+#include "volume.h"
 
 using namespace std;
 
@@ -156,6 +157,15 @@ int main(int argc, char *argv[]) {
     videoScroller->setWidget(inner);
     videoScroller->setWidgetResizable(true);
 
+    VolumeButton *muteButton = new VolumeButton(buttonWidget);
+    VolumeSlider *volumeSlider = new VolumeSlider(buttonWidget);
+
+    volumeSlider->connect(volumeSlider, SIGNAL(valueChanged(int)), player, SLOT(setVolume(int)));
+    volumeSlider->connect(volumeSlider, SIGNAL(valueChanged(int)), muteButton, SLOT (changeIcon(int)));
+
+    muteButton->connect(muteButton, SIGNAL(mute(bool)), player, SLOT(setMuted(bool)));
+    muteButton->connect(muteButton, SIGNAL(moveSlider(int)), volumeSlider, SLOT (moveSlider(int)));
+
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
@@ -169,6 +179,8 @@ int main(int argc, char *argv[]) {
     // add the video and the buttons to the top level widget
     top->addWidget(videoWidget);
     top->addWidget(videoScroller);
+    top->addWidget(muteButton);
+    top->addWidget(volumeSlider);
 
 
     // showtime!

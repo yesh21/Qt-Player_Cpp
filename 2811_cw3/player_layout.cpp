@@ -6,6 +6,7 @@
 #include <QSlider>
 #include <QComboBox>
 #include <QStyle>
+#include "volume.h"
 
 
 using namespace std;
@@ -23,6 +24,8 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
         try {
             QScrollArea *qw = dynamic_cast<QScrollArea *>(o->widget());
             QVideoWidget *videoWidget = dynamic_cast<QVideoWidget *>(o->widget());
+            VolumeSlider *volumeSlider = dynamic_cast<VolumeSlider *>(o->widget());
+            VolumeButton *muteButton = dynamic_cast<VolumeButton *>(o->widget());
             if(qw){
                 qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -30,6 +33,12 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             }
             else if(videoWidget){
                    videoWidget->setGeometry(0+r.x(),0,r.width(), 0.625*r.height()-35);
+            }
+            else if(muteButton){
+                muteButton->setGeometry(r.width()-270+r.x(),(0.625)*r.height()-30+5+r.y(),30, 30);
+            }
+            else if(volumeSlider){
+                volumeSlider->setGeometry(r.width()-205+r.x(),(0.625)*r.height()-30+5+r.y(),200, 30);
             }
         }
         catch (bad_cast) {
