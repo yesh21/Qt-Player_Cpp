@@ -12,7 +12,6 @@ SOURCES += \
         the_button.cpp \
         the_player.cpp \
         tomeo.cpp \
-        video_slider.cpp \
         volume.cpp
 
 HEADERS += \
@@ -20,7 +19,6 @@ HEADERS += \
     playpause.h \
     the_button.h \
     the_player.h \
-    video_slider.h \
     volume.h \
     skip_buttons.h
 

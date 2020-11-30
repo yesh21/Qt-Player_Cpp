@@ -31,7 +31,6 @@
 #include <QFrame>
 #include "player_layout.h"
 #include "volume.h"
-#include "video_slider.h"
 #include "skip_buttons.h"
 #include "playpause.h"
 
@@ -169,11 +168,6 @@ int main(int argc, char *argv[]) {
     muteButton->connect(muteButton, SIGNAL(mute(bool)), player, SLOT(setMuted(bool)));
     muteButton->connect(muteButton, SIGNAL(moveSlider(int)), volumeSlider, SLOT (moveSlider(int)));
 
-    VideoSlider *videoSlider = new VideoSlider(buttonWidget);
-
-    player->connect(player, SIGNAL(durationChanged(qint64)), videoSlider, SLOT (SetRange(qint64)));
-    player->connect(player, SIGNAL(positionChanged(qint64)), videoSlider, SLOT (SetValue(qint64)));
-    videoSlider->connect(videoSlider, SIGNAL(valueChanged(int)), player, SLOT (SetPosition(int)));
 
     ForwardButton *forwardSkipBtn = new ForwardButton(buttonWidget);
     BackwardButton *backwardSkipBtn = new BackwardButton(buttonWidget);
@@ -199,7 +193,6 @@ int main(int argc, char *argv[]) {
     top->addWidget(videoScroller);
     top->addWidget(muteButton);
     top->addWidget(volumeSlider);
-    top->addWidget(videoSlider);
     top->addWidget(forwardSkipBtn);
     top->addWidget(playBtn);
     top->addWidget(pauseBtn);
