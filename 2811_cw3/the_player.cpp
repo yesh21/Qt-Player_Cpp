@@ -28,6 +28,14 @@ void ThePlayer::jumpTo (TheButtonInfo* button) {
     play();
 }
 
+void ThePlayer::playButton(){
+    play();
+}
+
+void ThePlayer::pauseButton(){
+    pause();
+}
+
 void ThePlayer::SetPosition(int position){
     setPosition(position);
 }

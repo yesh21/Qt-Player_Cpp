@@ -33,6 +33,7 @@
 #include "volume.h"
 #include "video_slider.h"
 #include "skip_buttons.h"
+#include "playpause.h"
 
 using namespace std;
 
@@ -176,10 +177,13 @@ int main(int argc, char *argv[]) {
 
     ForwardButton *forwardSkipBtn = new ForwardButton(buttonWidget);
     BackwardButton *backwardSkipBtn = new BackwardButton(buttonWidget);
+    PlayButton *playBtn = new PlayButton(buttonWidget);
+    PauseButton *pauseBtn = new PauseButton(buttonWidget);
 
     forwardSkipBtn->connect(forwardSkipBtn, SIGNAL(clicked(bool)), player, SLOT(skipBack(bool)));
     backwardSkipBtn->connect(backwardSkipBtn, SIGNAL(clicked(bool)), player, SLOT(skipForward(bool)));
-
+    playBtn->connect(playBtn, SIGNAL(clicked(bool)), player, SLOT(playButton()));
+    pauseBtn->connect(pauseBtn, SIGNAL(clicked(bool)), player, SLOT(pauseButton()));
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
@@ -197,6 +201,8 @@ int main(int argc, char *argv[]) {
     top->addWidget(volumeSlider);
     top->addWidget(videoSlider);
     top->addWidget(forwardSkipBtn);
+    top->addWidget(playBtn);
+    top->addWidget(pauseBtn);
     top->addWidget(backwardSkipBtn);
 
     // showtime!

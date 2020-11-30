@@ -8,6 +8,7 @@
 #include <QStyle>
 #include "volume.h"
 #include "skip_buttons.h"
+#include "playpause.h"
 
 
 using namespace std;
@@ -30,6 +31,8 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             QSlider *videoSlider = dynamic_cast<QSlider *>(o->widget());
             ForwardButton *forwardSkipBtn = dynamic_cast<ForwardButton *>(o->widget());
             BackwardButton *backwardSkipBtn = dynamic_cast<BackwardButton *>(o->widget());
+            PlayButton *playBtn = dynamic_cast<PlayButton *>(o->widget());
+            PauseButton *pauseBtn = dynamic_cast<PauseButton *>(o->widget());
             if(qw){
                 qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -42,16 +45,22 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
                 muteButton->setGeometry(r.width()-270+r.x(),(0.625)*r.height()-30+5+r.y(),30, 30);
             }
             else if(volumeSlider){
-                volumeSlider->setGeometry(r.width()-205+r.x(),(0.625)*r.height()-30+5+r.y(),200, 30);
+                volumeSlider->setGeometry(r.width()-235+r.x(),(0.625)*r.height()-30+5+r.y(),235, 30);
             }
             else if(videoSlider){
-                videoSlider->setGeometry(70+r.x(),(0.625)*r.height()+5-30+r.y(),r.width()-385, 30);
+                videoSlider->setGeometry(140+r.x(),(0.625)*r.height()+5-30+r.y(),r.width()-420, 30);
             }
             else if(forwardSkipBtn){
                 forwardSkipBtn->setGeometry(0+r.x(),(0.625)*r.height()+5-30+r.y(),30, 30);
             }
+            else if(playBtn){
+                playBtn->setGeometry(35+r.x(),(0.625)*r.height()+5-30+r.y(),30, 30);
+            }
+            else if(pauseBtn){
+                pauseBtn->setGeometry(70+r.x(),(0.625)*r.height()+5-30+r.y(),30, 30);
+            }
             else if(backwardSkipBtn){
-                backwardSkipBtn->setGeometry(35+r.x(),(0.625)*r.height()+5-30+r.y(),30, 30);
+                backwardSkipBtn->setGeometry(105+r.x(),(0.625)*r.height()+5-30+r.y(),30, 30);
             }
         }
         catch (bad_cast) {

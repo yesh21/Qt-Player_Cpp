@@ -17,6 +17,7 @@ SOURCES += \
 
 HEADERS += \
     player_layout.h \
+    playpause.h \
     the_button.h \
     the_player.h \
     video_slider.h \

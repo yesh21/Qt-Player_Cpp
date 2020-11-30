@@ -48,6 +48,8 @@ public slots:
     void SetPosition(int position);
     void skipBack(bool skip);
     void skipForward(bool skip);
+    void playButton();
+    void pauseButton();
 };
 
 #endif //CW2_THE_PLAYER_H
