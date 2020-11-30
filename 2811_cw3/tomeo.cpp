@@ -27,7 +27,9 @@
 #include <QtCore/QDirIterator>
 #include "the_player.h"
 #include "the_button.h"
-
+#include <QScrollArea>
+#include <QFrame>
+#include "player_layout.h"
 
 using namespace std;
 
@@ -140,28 +142,34 @@ int main(int argc, char *argv[]) {
     buttonWidget->setLayout(layout);
 
 
-    // create the four buttons
-    for ( int i = 0; i < 4; i++ ) {
+    QScrollArea *videoScroller = new QScrollArea();
+    QFrame *inner = new QFrame(videoScroller);
+
+    for ( int i = 0; i < static_cast<int>(videos.size()); i++ ) {
         TheButton *button = new TheButton(buttonWidget);
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         buttons.push_back(button);
         layout->addWidget(button);
         button->init(&videos.at(i));
     }
+    inner->setLayout(layout);
+    videoScroller->setWidget(inner);
+    videoScroller->setWidgetResizable(true);
 
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
     // create the main window and layout
     QWidget window;
-    QVBoxLayout *top = new QVBoxLayout();
+    ResponsiveLayout *top = new ResponsiveLayout();
     window.setLayout(top);
     window.setWindowTitle("tomeo");
     window.setMinimumSize(800, 680);
 
     // add the video and the buttons to the top level widget
     top->addWidget(videoWidget);
-    top->addWidget(buttonWidget);
+    top->addWidget(videoScroller);
+
 
     // showtime!
     window.show();
