@@ -7,6 +7,7 @@
 #include <QComboBox>
 #include <QStyle>
 #include "volume.h"
+#include "skip_buttons.h"
 
 
 using namespace std;
@@ -27,6 +28,8 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             VolumeSlider *volumeSlider = dynamic_cast<VolumeSlider *>(o->widget());
             VolumeButton *muteButton = dynamic_cast<VolumeButton *>(o->widget());
             QSlider *videoSlider = dynamic_cast<QSlider *>(o->widget());
+            ForwardButton *forwardSkipBtn = dynamic_cast<ForwardButton *>(o->widget());
+            BackwardButton *backwardSkipBtn = dynamic_cast<BackwardButton *>(o->widget());
             if(qw){
                 qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -42,7 +45,13 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
                 volumeSlider->setGeometry(r.width()-205+r.x(),(0.625)*r.height()-30+5+r.y(),200, 30);
             }
             else if(videoSlider){
-                videoSlider->setGeometry(35+r.x(),(0.625)*r.height()+5-30+r.y(),r.width()-310, 30);
+                videoSlider->setGeometry(70+r.x(),(0.625)*r.height()+5-30+r.y(),r.width()-385, 30);
+            }
+            else if(forwardSkipBtn){
+                forwardSkipBtn->setGeometry(0+r.x(),(0.625)*r.height()+5-30+r.y(),30, 30);
+            }
+            else if(backwardSkipBtn){
+                backwardSkipBtn->setGeometry(35+r.x(),(0.625)*r.height()+5-30+r.y(),30, 30);
             }
         }
         catch (bad_cast) {

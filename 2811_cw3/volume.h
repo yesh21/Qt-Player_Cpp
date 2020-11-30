@@ -3,9 +3,7 @@
 
 
 #include <QPushButton>
-#include <QUrl>
 #include <QStyle>
-#include <QAudio>
 #include <QWidget>
 #include <QSlider>
 

@@ -31,3 +31,11 @@ void ThePlayer::jumpTo (TheButtonInfo* button) {
 void ThePlayer::SetPosition(int position){
     setPosition(position);
 }
+
+void ThePlayer::skipBack(bool skip){
+    setPosition(position()-5000);
+}
+
+void ThePlayer::skipForward(bool skip){
+    setPosition(position()+5000);
+}

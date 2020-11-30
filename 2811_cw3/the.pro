@@ -20,7 +20,8 @@ HEADERS += \
     the_button.h \
     the_player.h \
     video_slider.h \
-    volume.h
+    volume.h \
+    skip_buttons.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

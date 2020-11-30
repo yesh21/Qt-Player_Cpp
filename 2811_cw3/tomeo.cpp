@@ -32,6 +32,7 @@
 #include "player_layout.h"
 #include "volume.h"
 #include "video_slider.h"
+#include "skip_buttons.h"
 
 using namespace std;
 
@@ -173,6 +174,12 @@ int main(int argc, char *argv[]) {
     player->connect(player, SIGNAL(positionChanged(qint64)), videoSlider, SLOT (SetValue(qint64)));
     videoSlider->connect(videoSlider, SIGNAL(valueChanged(int)), player, SLOT (SetPosition(int)));
 
+    ForwardButton *forwardSkipBtn = new ForwardButton(buttonWidget);
+    BackwardButton *backwardSkipBtn = new BackwardButton(buttonWidget);
+
+    forwardSkipBtn->connect(forwardSkipBtn, SIGNAL(clicked(bool)), player, SLOT(skipBack(bool)));
+    backwardSkipBtn->connect(backwardSkipBtn, SIGNAL(clicked(bool)), player, SLOT(skipForward(bool)));
+
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
@@ -189,7 +196,8 @@ int main(int argc, char *argv[]) {
     top->addWidget(muteButton);
     top->addWidget(volumeSlider);
     top->addWidget(videoSlider);
-
+    top->addWidget(forwardSkipBtn);
+    top->addWidget(backwardSkipBtn);
 
     // showtime!
     window.show();
