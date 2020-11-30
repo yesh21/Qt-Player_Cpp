@@ -53,18 +53,37 @@ vector<TheButtonInfo> getInfoIn (string loc) {
             QString thumb = f.left( f .length() - 4) +".png";
             if (QFile(thumb).exists()) { // if a png thumbnail exists
                 QImageReader *imageReader = new QImageReader(thumb);
+                QImage sprite = imageReader->read(); // read the thumbnail
+                if (!sprite.isNull()) {
+                    QIcon* ico = new QIcon(QPixmap::fromImage(sprite)); // voodoo to create an icon for the button
+                    QUrl* url = new QUrl(QUrl::fromLocalFile( f )); // convert the file location to a generic url
+                    out . push_back(TheButtonInfo( url , ico  ) ); // add to the output list
+                }
+                else{
+                    QString thumb = f.left( f .length() - 5) +"def.png";
+                    if (QFile(thumb).exists()) { // if a png thumbnail exists
+                        QImageReader *imageReader = new QImageReader(thumb);
+                        QImage sprite = imageReader->read(); // read the thumbnail
+                        if (!sprite.isNull()) {
+                            QIcon* ico = new QIcon(QPixmap::fromImage(sprite)); // voodoo to create an icon for the button
+                            QUrl* url = new QUrl(QUrl::fromLocalFile( f )); // convert the file location to a generic url
+                            out . push_back(TheButtonInfo( url , ico  ) ); // add to the output list
+                        }
+                    }                    }
+            }
+            else{
+                QString thumb = f.left( f .length() - 5) +"def.png";
+                if (QFile(thumb).exists()) { // if a png thumbnail exists
+                    QImageReader *imageReader = new QImageReader(thumb);
                     QImage sprite = imageReader->read(); // read the thumbnail
                     if (!sprite.isNull()) {
                         QIcon* ico = new QIcon(QPixmap::fromImage(sprite)); // voodoo to create an icon for the button
                         QUrl* url = new QUrl(QUrl::fromLocalFile( f )); // convert the file location to a generic url
                         out . push_back(TheButtonInfo( url , ico  ) ); // add to the output list
                     }
-                    else
-                        qDebug() << "warning: skipping video because I couldn't process thumbnail " << thumb << endl;
+                }
             }
-            else
-                qDebug() << "warning: skipping video because I couldn't find thumbnail " << thumb << endl;
-        }
+            }
     }
 
     return out;
