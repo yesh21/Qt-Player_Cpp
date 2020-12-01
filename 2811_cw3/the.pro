@@ -9,21 +9,15 @@ CONFIG += c++11
 
 SOURCES += \
         player_layout.cpp \
-        playpause.cpp \
         the_button.cpp \
         the_player.cpp \
-        tomeo.cpp \
-        video_slider.cpp \
-        volume.cpp
+        tomeo.cpp
 
 HEADERS += \
     player_layout.h \
     playpause.h \
     the_button.h \
-    the_player.h \
-    video_slider.h \
-    volume.h \
-    skip_buttons.h
+    the_player.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

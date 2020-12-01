@@ -30,9 +30,6 @@
 #include <QScrollArea>
 #include <QFrame>
 #include "player_layout.h"
-#include "volume.h"
-#include "video_slider.h"
-#include "skip_buttons.h"
 #include "playpause.h"
 
 using namespace std;
@@ -160,31 +157,11 @@ int main(int argc, char *argv[]) {
     videoScroller->setWidget(inner);
     videoScroller->setWidgetResizable(true);
 
-    VolumeButton *muteButton = new VolumeButton(buttonWidget);
-    VolumeSlider *volumeSlider = new VolumeSlider(buttonWidget);
-
-    volumeSlider->connect(volumeSlider, SIGNAL(valueChanged(int)), player, SLOT(setVolume(int)));
-    volumeSlider->connect(volumeSlider, SIGNAL(valueChanged(int)), muteButton, SLOT (changeIcon(int)));
-
-    muteButton->connect(muteButton, SIGNAL(mute(bool)), player, SLOT(setMuted(bool)));
-    muteButton->connect(muteButton, SIGNAL(moveSlider(int)), volumeSlider, SLOT (moveSlider(int)));
-
-    VideoSlider *videoSlider = new VideoSlider(buttonWidget);
-
-    player->connect(player, SIGNAL(durationChanged(qint64)), videoSlider, SLOT (SetRange(qint64)));
-    player->connect(player, SIGNAL(positionChanged(qint64)), videoSlider, SLOT (SetValue(qint64)));
-    videoSlider->connect(videoSlider, SIGNAL(valueChanged(int)), player, SLOT (SetPosition(int)));
-
-    ForwardButton *forwardSkipBtn = new ForwardButton(buttonWidget);
-    BackwardButton *backwardSkipBtn = new BackwardButton(buttonWidget);
     PlayButton *playBtn = new PlayButton(buttonWidget);
+    PauseButton *pauseBtn = new PauseButton(buttonWidget);
 
-    forwardSkipBtn->connect(forwardSkipBtn, SIGNAL(clicked(bool)), player, SLOT(skipBack(bool)));
-    backwardSkipBtn->connect(backwardSkipBtn, SIGNAL(clicked(bool)), player, SLOT(skipForward(bool)));
-
-    playBtn->connect(playBtn, SIGNAL(clicked(bool)), player, SLOT (click(bool)));
-    player->connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), playBtn, SLOT (setState(QMediaPlayer::State)));
-
+    playBtn->connect(playBtn, SIGNAL(clicked(bool)), player, SLOT(playButton()));
+    pauseBtn->connect(pauseBtn, SIGNAL(clicked(bool)), player, SLOT(pauseButton()));
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
@@ -198,12 +175,8 @@ int main(int argc, char *argv[]) {
     // add the video and the buttons to the top level widget
     top->addWidget(videoWidget);
     top->addWidget(videoScroller);
-    top->addWidget(muteButton);
-    top->addWidget(volumeSlider);
-    top->addWidget(videoSlider);
-    top->addWidget(forwardSkipBtn);
     top->addWidget(playBtn);
-    top->addWidget(backwardSkipBtn);
+    top->addWidget(pauseBtn);
 
     // showtime!
     window.show();
