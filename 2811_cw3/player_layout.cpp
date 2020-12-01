@@ -32,7 +32,6 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             ForwardButton *forwardSkipBtn = dynamic_cast<ForwardButton *>(o->widget());
             BackwardButton *backwardSkipBtn = dynamic_cast<BackwardButton *>(o->widget());
             PlayButton *playBtn = dynamic_cast<PlayButton *>(o->widget());
-            PauseButton *pauseBtn = dynamic_cast<PauseButton *>(o->widget());
             if(qw){
                 qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -54,10 +53,7 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
                 forwardSkipBtn->setGeometry(5+r.x(),(0.625)*r.height()+10,60, 60);
             }
             else if(playBtn){
-                playBtn->setGeometry(70+r.x(),(0.625)*r.height()+10,60, 60);
-            }
-            else if(pauseBtn){
-                pauseBtn->setGeometry(135+r.x(),(0.625)*r.height()+10,60, 60);
+                playBtn->setGeometry(70+r.x(),(0.625)*r.height()+10,120, 60);
             }
             else if(backwardSkipBtn){
                 backwardSkipBtn->setGeometry(200+r.x(),(0.625)*r.height()+10,60, 60);

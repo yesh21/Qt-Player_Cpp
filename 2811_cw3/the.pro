@@ -9,6 +9,7 @@ CONFIG += c++11
 
 SOURCES += \
         player_layout.cpp \
+        playpause.cpp \
         the_button.cpp \
         the_player.cpp \
         tomeo.cpp \

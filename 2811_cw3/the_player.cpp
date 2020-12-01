@@ -28,14 +28,6 @@ void ThePlayer::jumpTo (TheButtonInfo* button) {
     play();
 }
 
-void ThePlayer::playButton(){
-    play();
-}
-
-void ThePlayer::pauseButton(){
-    pause();
-}
-
 void ThePlayer::SetPosition(int position){
     setPosition(position);
 }
@@ -46,4 +38,19 @@ void ThePlayer::skipBack(bool skip){
 
 void ThePlayer::skipForward(bool skip){
     setPosition(position()+5000);
+}
+
+void ThePlayer::setPlay(bool flipPlay)
+{
+    playValue = !flipPlay;
+}
+
+void ThePlayer::click(bool click){
+    if(playValue){
+     play();
+    }
+   else{
+        pause();
+    }
+    setPlay(playValue);
 }

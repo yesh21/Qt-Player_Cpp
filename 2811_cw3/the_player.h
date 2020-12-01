@@ -36,6 +36,7 @@ public:
 
     // all buttons have been setup, store pointers here
     void setContent(vector<TheButton*>* b, vector<TheButtonInfo>* i);
+    void setPlay(bool flipPlay);
 
 private slots:
 
@@ -48,8 +49,10 @@ public slots:
     void SetPosition(int position);
     void skipBack(bool skip);
     void skipForward(bool skip);
-    void playButton();
-    void pauseButton();
+    void click(bool playValue);
+
+private:
+    bool playValue = false;
 };
 
 #endif //CW2_THE_PLAYER_H
