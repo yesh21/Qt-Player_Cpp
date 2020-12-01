@@ -162,6 +162,11 @@ int main(int argc, char *argv[]) {
 
     playBtn->connect(playBtn, SIGNAL(clicked(bool)), player, SLOT(playButton()));
     pauseBtn->connect(pauseBtn, SIGNAL(clicked(bool)), player, SLOT(pauseButton()));
+    player->connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), playBtn, SLOT (setState(QMediaPlayer::State)));
+    player->connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), pauseBtn, SLOT (setState(QMediaPlayer::State)));
+
+
+
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
