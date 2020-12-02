@@ -39,3 +39,18 @@ void ThePlayer::pauseButton(){
 void ThePlayer::SetPosition(int position){
     setPosition(position);
 }
+
+void ThePlayer::mute(bool volume){
+    if(!volume){
+    if(muteValue){
+      setVolume(0);
+    }
+   else{
+      setVolume(100);
+    }
+    flipVolume(muteValue);
+    }
+}
+void ThePlayer::flipVolume(bool position){
+    muteValue = !position;
+}

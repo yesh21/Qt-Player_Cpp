@@ -36,10 +36,14 @@ public:
 
     // all buttons have been setup, store pointers here
     void setContent(vector<TheButton*>* b, vector<TheButtonInfo>* i);
+    void flipVolume(bool pos);
 
 private slots:
 
     void playStateChanged (QMediaPlayer::State ms);
+
+private:
+    bool muteValue = false;
 
 public slots:
 
@@ -48,6 +52,7 @@ public slots:
     void SetPosition(int position);
     void playButton();
     void pauseButton();
+    void mute(bool volume);
 };
 
 #endif //CW2_THE_PLAYER_H

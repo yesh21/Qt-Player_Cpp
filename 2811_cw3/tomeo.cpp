@@ -31,6 +31,7 @@
 #include <QFrame>
 #include "player_layout.h"
 #include "playpause.h"
+#include "volume.h"
 
 using namespace std;
 
@@ -165,6 +166,9 @@ int main(int argc, char *argv[]) {
     player->connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), playBtn, SLOT (setState(QMediaPlayer::State)));
     player->connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), pauseBtn, SLOT (setState(QMediaPlayer::State)));
 
+    VolumeButton *mute = new VolumeButton(buttonWidget);
+    mute->connect(mute,SIGNAL(clicked(bool)),player,SLOT(mute(bool)) );
+
 
 
     // tell the player what buttons and videos are available
@@ -182,6 +186,7 @@ int main(int argc, char *argv[]) {
     top->addWidget(videoScroller);
     top->addWidget(playBtn);
     top->addWidget(pauseBtn);
+    top->addWidget(mute);
 
     // showtime!
     window.show();

@@ -7,6 +7,7 @@
 #include <QComboBox>
 #include <QStyle>
 #include "playpause.h"
+#include "volume.h"
 
 
 using namespace std;
@@ -27,6 +28,7 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             QSlider *videoSlider = dynamic_cast<QSlider *>(o->widget());
             PlayButton *playBtn = dynamic_cast<PlayButton *>(o->widget());
             PauseButton *pauseBtn = dynamic_cast<PauseButton *>(o->widget());
+            VolumeButton *mute = dynamic_cast<VolumeButton *>(o->widget());
             if(qw){
                 qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -40,10 +42,13 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
                 videoSlider->setGeometry(140+r.x(),(0.725)*r.height()+5-30+r.y(),r.width()-420, 30);
             }
             else if(playBtn){
-                playBtn->setGeometry(r.width()/2+r.x(),(0.725)*r.height()+5-30+r.y(),30, 30);
+                playBtn->setGeometry(r.width()/2-55+r.x(),(0.725)*r.height()+5-30+r.y(),30, 30);
             }
             else if(pauseBtn){
-                pauseBtn->setGeometry(r.width()/2-35+r.x(),(0.725)*r.height()+5-30+r.y(),30, 30);
+                pauseBtn->setGeometry(r.width()/2-20+r.x(),(0.725)*r.height()+5-30+r.y(),30, 30);
+            }
+            else if(mute){
+                mute->setGeometry(r.width()/2+15+r.x(),(0.725)*r.height()+5-30+r.y(),30, 30);
             }
         }
         catch (bad_cast) {

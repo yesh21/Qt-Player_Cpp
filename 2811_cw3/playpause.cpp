@@ -19,7 +19,9 @@ void PauseButton::setState(QMediaPlayer::State state){
     if (state) {
 
             switch (state) {
-
+            case QMediaPlayer::StoppedState:
+                setEnabled(true);
+                break;
             case QMediaPlayer::PlayingState:
                 setEnabled(true);
                 break;
