@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <QMediaPlayer>
 
+
 class PlayButton : public QPushButton {
     Q_OBJECT
 public:
@@ -14,17 +15,9 @@ public:
         setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
    }
 private slots:
+    //void clicked();
     void setState(QMediaPlayer::State state);
 };
 
-class PauseButton : public QPushButton {
-    Q_OBJECT
-public:
-    PauseButton(QWidget *parent) :  QPushButton( parent) {
-        setIcon(style()->standardIcon(QStyle::SP_MediaPause));
-   }
-private slots:
-    void setState(QMediaPlayer::State state);
-};
 
 #endif // PLAYPAUSE_H

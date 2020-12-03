@@ -1,34 +1,17 @@
 #include "playpause.h"
-
 void PlayButton::setState(QMediaPlayer::State state){
-    if (state) {
+    //if (state) {
 
             switch (state) {
 
             case QMediaPlayer::PlayingState:
-                setEnabled(false);
+                setEnabled(true);
+                setIcon(style()->standardIcon(QStyle::SP_MediaPause));
                 break;
             case QMediaPlayer::PausedState:
                 setEnabled(true);
+                setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
                 break;
             }
-        }
+      //  }
 }
-
-void PauseButton::setState(QMediaPlayer::State state){
-    if (state) {
-
-            switch (state) {
-            case QMediaPlayer::StoppedState:
-                setEnabled(true);
-                break;
-            case QMediaPlayer::PlayingState:
-                setEnabled(true);
-                break;
-            case QMediaPlayer::PausedState:
-                setEnabled(false);
-                break;
-            }
-        }
-}
-
