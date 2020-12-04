@@ -35,6 +35,7 @@
 #include "skip_buttons.h"
 #include "playpause.h"
 #include "videolength_label.h"
+#include "video_widget.h"
 
 using namespace std;
 
@@ -132,7 +133,7 @@ int main(int argc, char *argv[]) {
     }
 
     // the widget that will show the video
-    QVideoWidget *videoWidget = new QVideoWidget;
+    VideoScreen *videoWidget = new VideoScreen();
 
     // the QMediaPlayer which controls the playback
     ThePlayer *player = new ThePlayer;
@@ -143,7 +144,7 @@ int main(int argc, char *argv[]) {
     // a list of the buttons
     vector<TheButton*> buttons;
     // the buttons are arranged horizontally
-    QHBoxLayout *layout = new QHBoxLayout();
+    QGridLayout *layout = new QGridLayout();
     buttonWidget->setLayout(layout);
 
 
@@ -154,7 +155,7 @@ int main(int argc, char *argv[]) {
         TheButton *button = new TheButton(buttonWidget);
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         buttons.push_back(button);
-        layout->addWidget(button);
+        layout->addWidget(button,0,i);
         button->init(&videos.at(i));
     }
     inner->setLayout(layout);
@@ -194,6 +195,7 @@ int main(int argc, char *argv[]) {
     player->connect(player, SIGNAL(positionChanged(qint64)), length_label, SLOT (setLength(qint64)));
     player->connect(player, SIGNAL(durationChanged(qint64)), duration_label, SLOT (setLength(qint64)));
 
+    videoWidget->setFullScreen(false);
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 

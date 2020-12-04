@@ -39,14 +39,17 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setGeometry(0+r.x(),r.height()-175+r.y(),r.width(), 165);
             }
-            else if(videoWidget){
+            else if(videoWidget && !videoWidget->isFullScreen()){
                    videoWidget->setGeometry(0+r.x(),0,r.width(), 0.625*r.height()-35);
+            }
+            else if(videoWidget && videoWidget->isFullScreen()){
+                   videoWidget->showFullScreen();
             }
             else if(muteButton){
                 muteButton->setGeometry(r.x()+265,(0.625)*r.height()+10,60, 60);
             }
             else if(volumeSlider){
-                volumeSlider->setGeometry(330+r.x(),(0.625)*r.height()+25,r.width()-335, 30);
+                volumeSlider->setGeometry(330+r.x(),(0.625)*r.height()+25,r.width()-335-120, 30);
             }
             else if(videoSlider){
                 videoSlider->setGeometry(r.x()+5,(0.625)*r.height()-25,r.width()-125, 30);
