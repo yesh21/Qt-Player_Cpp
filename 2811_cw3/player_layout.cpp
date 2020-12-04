@@ -10,6 +10,7 @@
 #include "skip_buttons.h"
 #include "playpause.h"
 #include "videolength_label.h"
+#include "fullscreen_button.h"
 
 
 using namespace std;
@@ -34,10 +35,14 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             BackwardButton *backwardSkipBtn = dynamic_cast<BackwardButton *>(o->widget());
             PlayButton *playBtn = dynamic_cast<PlayButton *>(o->widget());
             LengthLabel *lengthLabel = dynamic_cast<LengthLabel *>(o->widget());
+            FullScreenButton *fullScreen = dynamic_cast<FullScreenButton *>(o->widget());
             if(qw){
                 qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setGeometry(0+r.x(),r.height()-175+r.y(),r.width(), 165);
+            }
+            else if(fullScreen){
+                fullScreen->setGeometry(r.width()-180,(0.625)*r.height()+10,120, 60);
             }
             else if(videoWidget && !videoWidget->isFullScreen()){
                    videoWidget->setGeometry(0+r.x(),0,r.width(), 0.625*r.height()-35);
@@ -49,7 +54,7 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
                 muteButton->setGeometry(r.x()+265,(0.625)*r.height()+10,60, 60);
             }
             else if(volumeSlider){
-                volumeSlider->setGeometry(330+r.x(),(0.625)*r.height()+25,r.width()-335-120, 30);
+                volumeSlider->setGeometry(330+r.x(),(0.625)*r.height()+25,r.width()-535, 30);
             }
             else if(videoSlider){
                 videoSlider->setGeometry(r.x()+5,(0.625)*r.height()-25,r.width()-125, 30);
@@ -69,6 +74,7 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             else if(lengthLabel->whatsThis()=="duration_label"){
                 lengthLabel->setGeometry(r.width()-40,(0.625)*r.height()-25,60, 30);
             }
+
         }
         catch (bad_cast) {
             // bad_case: cast failed on reference...

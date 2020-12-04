@@ -19,6 +19,7 @@ SOURCES += \
         volume.cpp
 
 HEADERS += \
+    fullscreen_button.h \
     player_layout.h \
     playpause.h \
     the_button.h \

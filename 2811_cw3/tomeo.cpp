@@ -28,6 +28,7 @@
 #include "the_player.h"
 #include "the_button.h"
 #include <QScrollArea>
+#include <QPushButton>
 #include <QFrame>
 #include "player_layout.h"
 #include "volume.h"
@@ -36,6 +37,7 @@
 #include "playpause.h"
 #include "videolength_label.h"
 #include "video_widget.h"
+#include "fullscreen_button.h"
 
 using namespace std;
 
@@ -196,6 +198,11 @@ int main(int argc, char *argv[]) {
     player->connect(player, SIGNAL(durationChanged(qint64)), duration_label, SLOT (setLength(qint64)));
 
     videoWidget->setFullScreen(false);
+
+    FullScreenButton *fullScreen = new FullScreenButton(buttonWidget);
+    fullScreen->setCheckable(true);
+    fullScreen->connect(fullScreen, SIGNAL(toggled(bool)), videoWidget, SLOT (setFullScreen(bool)));
+
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
@@ -217,6 +224,7 @@ int main(int argc, char *argv[]) {
     top->addWidget(backwardSkipBtn);
     top->addWidget(length_label);
     top->addWidget(duration_label);
+    top->addWidget(fullScreen);
 
     // showtime!
     window.show();
