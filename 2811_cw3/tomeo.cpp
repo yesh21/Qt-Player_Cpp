@@ -155,9 +155,17 @@ int main(int argc, char *argv[]) {
 
     for ( int i = 0; i < static_cast<int>(videos.size()); i++ ) {
         TheButton *button = new TheButton(buttonWidget);
+        QLabel *buttonLabel = new QLabel();
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         buttons.push_back(button);
+        QString Qstr = videos.at(i).url->toString();
+        string label = Qstr.toStdString();
+        size_t found = label.find_last_of("/");
+        label = label.substr(found+1);
+        QString qstr = QString::fromStdString(label);
+        buttonLabel->setText(qstr);
         layout->addWidget(button,0,i);
+        layout->addWidget(buttonLabel,1,i);
         button->init(&videos.at(i));
     }
     inner->setLayout(layout);
