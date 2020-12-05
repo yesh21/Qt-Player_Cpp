@@ -200,8 +200,8 @@ int main(int argc, char *argv[]) {
     videoWidget->setFullScreen(false);
 
     FullScreenButton *fullScreen = new FullScreenButton(buttonWidget);
-    fullScreen->setCheckable(true);
-    fullScreen->connect(fullScreen, SIGNAL(toggled(bool)), videoWidget, SLOT (setFullScreen(bool)));
+
+    fullScreen->connect(fullScreen, SIGNAL(clicked(bool)), videoWidget, SLOT (setFullScr(bool)));
 
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);

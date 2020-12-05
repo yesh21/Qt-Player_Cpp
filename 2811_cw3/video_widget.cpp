@@ -13,3 +13,8 @@ void VideoScreen::keyPressEvent(QKeyEvent *event)
     setFullScreen(!isFullScreen());
    event->accept();
 }
+
+void VideoScreen::setFullScr(bool value)
+{
+    setFullScreen(!value);
+}

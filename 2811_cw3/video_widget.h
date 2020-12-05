@@ -12,6 +12,8 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
+private slots:
+    void setFullScr(bool value);
 
 };
 #endif // VIDEO_WIDGET_H
