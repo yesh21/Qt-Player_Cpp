@@ -16,6 +16,7 @@ SOURCES += \
         video_slider.cpp \
         video_widget.cpp \
         videolength_label.cpp \
+        videosearch.cpp \
         volume.cpp
 
 HEADERS += \
@@ -27,6 +28,7 @@ HEADERS += \
     video_slider.h \
     video_widget.h \
     videolength_label.h \
+    videosearch.h \
     volume.h \
     skip_buttons.h
 

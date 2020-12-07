@@ -11,7 +11,7 @@
 #include "playpause.h"
 #include "videolength_label.h"
 #include "fullscreen_button.h"
-
+#include "videosearch.h"
 
 using namespace std;
 
@@ -36,13 +36,14 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             PlayButton *playBtn = dynamic_cast<PlayButton *>(o->widget());
             LengthLabel *lengthLabel = dynamic_cast<LengthLabel *>(o->widget());
             FullScreenButton *fullScreen = dynamic_cast<FullScreenButton *>(o->widget());
+            videoSearch *searchBox = dynamic_cast<videoSearch *>(o->widget());
             if(qw){
                 qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setGeometry(0+r.x(),r.height()-175+r.y(),r.width(), 165);
             }
             else if(fullScreen){
-                fullScreen->setGeometry(r.width()-180,(0.625)*r.height()+10,120, 60);
+                fullScreen->setGeometry(r.width()-180,(0.625)*r.height()+10,80, 60);
             }
             else if(videoWidget && !videoWidget->isFullScreen()){
                    videoWidget->setGeometry(0+r.x(),0,r.width(), 0.625*r.height()-35);
@@ -67,6 +68,9 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
             }
             else if(backwardSkipBtn){
                 backwardSkipBtn->setGeometry(200+r.x(),(0.625)*r.height()+10,60, 60);
+            }
+            else if (searchBox){
+                searchBox->setGeometry(r.width() - 90, (0.625)*r.height()+10, 80, 60);
             }
             else if(lengthLabel->whatsThis()=="length_label"){
                 lengthLabel->setGeometry(r.width()-100,(0.625)*r.height()-25,60, 30);

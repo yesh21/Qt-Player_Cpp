@@ -30,6 +30,7 @@
 #include <QScrollArea>
 #include <QPushButton>
 #include <QFrame>
+#include <QLineEdit>
 #include "player_layout.h"
 #include "volume.h"
 #include "video_slider.h"
@@ -38,6 +39,7 @@
 #include "videolength_label.h"
 #include "video_widget.h"
 #include "fullscreen_button.h"
+#include "videosearch.h"
 
 using namespace std;
 
@@ -153,6 +155,10 @@ int main(int argc, char *argv[]) {
     QScrollArea *videoScroller = new QScrollArea();
     QFrame *inner = new QFrame(videoScroller);
 
+    QLineEdit *searchBoxParent = new QLineEdit();
+    videoSearch *searchBox = new videoSearch(videos, searchBoxParent);
+    //need to connect here and update the videos vector to _videos from the searchBox object
+
     for ( int i = 0; i < static_cast<int>(videos.size()); i++ ) {
         TheButton *button = new TheButton(buttonWidget);
         QLabel *buttonLabel = new QLabel();
@@ -233,6 +239,7 @@ int main(int argc, char *argv[]) {
     top->addWidget(length_label);
     top->addWidget(duration_label);
     top->addWidget(fullScreen);
+    top->addWidget(searchBox);
 
     // showtime!
     window.show();
