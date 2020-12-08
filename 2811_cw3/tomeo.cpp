@@ -176,7 +176,7 @@ int main(int argc, char *argv[]) {
         buttonLabel->setText(qstr); //adds a label with the filename underneath each thumbnail
         layout->addWidget(button,0,i);
         layout->addWidget(buttonLabel,1,i);
-        button->init(&searchBox->_filteredVideos.at(i));
+        button->init(&videos.at(i));
     }
     inner->setLayout(layout);
     videoScroller->setWidget(inner);

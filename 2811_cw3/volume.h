@@ -6,6 +6,7 @@
 #include <QStyle>
 #include <QWidget>
 #include <QSlider>
+#include <QStyleFactory>
 
 class VolumeButton : public QPushButton {
     Q_OBJECT
@@ -37,6 +38,7 @@ class VolumeSlider : public QSlider {
     Q_OBJECT
 public:
     VolumeSlider(QWidget *parent) :  QSlider(Qt::Horizontal, parent) {
+        setStyle(QStyleFactory::create("Fusion"));
         setTracking(true);
         setRange(0,100);
    }

@@ -17,7 +17,16 @@ public:
     videoSearch(vector<TheButtonInfo> videos, QWidget *parent) : QLineEdit(parent) {
         _allVideos = videos;
         _filteredVideos = videos;
-        setPlaceholderText("search Video");
+        setPlaceholderText("Search Video");
+        setStyleSheet("QLineEdit{ "
+                                                "background-color:transparent;"
+                                                "border: 2px solid gray;"
+                                                "border-radius: 10px;"
+                                                "padding: 0 8px;"
+                                                "selection-background-color: darkgray;"
+                                                "font-size: 16px;}"
+                                                );
+
     }
 public:
     vector<TheButtonInfo> _filteredVideos;

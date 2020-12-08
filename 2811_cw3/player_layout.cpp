@@ -58,7 +58,7 @@ void ResponsiveLayout::setGeometry(const QRect &r) {
             } else if(backwardSkipBtn) {
                 backwardSkipBtn->setGeometry(325+r.x(),(0.625)*r.height()+10,60, 60);
             } else if (searchBox) {
-                searchBox->setGeometry(10, (0.625)*r.height()+35, 180, 30);
+                searchBox->setGeometry(10, (0.625)*r.height()+15, 180, 50);
             } else if(lengthLabel->whatsThis()=="length_label") {
                 lengthLabel->setGeometry(r.width()-100,(0.625)*r.height()-25,60, 30);
             } else if(lengthLabel->whatsThis()=="duration_label") {
