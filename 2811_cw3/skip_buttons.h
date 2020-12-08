@@ -14,7 +14,7 @@ public:
    }
 
 };
-
+// as with the play button, QStyle is used for the button icon
 class BackwardButton : public QPushButton {
     Q_OBJECT
 public:

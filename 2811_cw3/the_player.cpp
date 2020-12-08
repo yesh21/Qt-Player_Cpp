@@ -28,30 +28,30 @@ void ThePlayer::jumpTo (TheButtonInfo* button) {
     play();
 }
 
-void ThePlayer::SetPosition(int position){
+void ThePlayer::SetPosition(int position) {
     setPosition(position);
 }
 
-void ThePlayer::skipBack(bool skip){
-    if(!skip)
-    setPosition(position()-5000);
+void ThePlayer::skipBack(bool skip) {
+    if(!skip) {
+        setPosition(position()-5000);
+    }
+}
+//skip by 5 seconds, hence the +-5000
+void ThePlayer::skipForward(bool skip) {
+    if(!skip) {
+        setPosition(position()+5000);
+    }
 }
 
-void ThePlayer::skipForward(bool skip){
-    if(!skip)
-    setPosition(position()+5000);
-}
-
-void ThePlayer::setPlay(bool flipPlay)
-{
+void ThePlayer::setPlay(bool flipPlay) {
     playValue = !flipPlay;
 }
 
-void ThePlayer::click(bool click){
-    if(playValue){
-     play();
-    }
-   else{
+void ThePlayer::click(bool click) {
+    if(playValue) {
+        play();
+    } else {
         pause();
     }
     setPlay(playValue);

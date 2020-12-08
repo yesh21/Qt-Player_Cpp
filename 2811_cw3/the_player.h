@@ -46,10 +46,11 @@ public slots:
 
     // start playing this ButtonInfo
     void jumpTo (TheButtonInfo* button);
-    void SetPosition(int position);
+    void SetPosition(int position); //slot used for our video slider
     void skipBack(bool skip);
     void skipForward(bool skip);
-    void click(bool playValue);
+    //slots used for our skip buttons
+    void click(bool playValue); //slot for the play/pause button
 
 private:
     bool playValue = false;

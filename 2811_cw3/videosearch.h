@@ -10,10 +10,10 @@
 
 using namespace std;
 
-class videoSearch : public QLineEdit{
+class videoSearch : public QLineEdit {
     Q_OBJECT
 public:
-    videoSearch(vector<TheButtonInfo> videos, QWidget *parent) : QLineEdit(parent){
+    videoSearch(vector<TheButtonInfo> videos, QWidget *parent) : QLineEdit(parent) {
         _allVideos = videos;
     }
 private:

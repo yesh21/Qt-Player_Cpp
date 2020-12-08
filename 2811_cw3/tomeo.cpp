@@ -70,8 +70,7 @@ vector<TheButtonInfo> getInfoIn (string loc) {
                     QIcon* ico = new QIcon(QPixmap::fromImage(sprite)); // voodoo to create an icon for the button
                     QUrl* url = new QUrl(QUrl::fromLocalFile( f )); // convert the file location to a generic url
                     out . push_back(TheButtonInfo( url , ico  ) ); // add to the output list
-                }
-                else{
+                } else {
                     QString thumb = f.left( f .length() - 5) +"def.png";
                     if (QFile(thumb).exists()) { // if a png thumbnail exists
                         QImageReader *imageReader = new QImageReader(thumb);
@@ -81,9 +80,9 @@ vector<TheButtonInfo> getInfoIn (string loc) {
                             QUrl* url = new QUrl(QUrl::fromLocalFile( f )); // convert the file location to a generic url
                             out . push_back(TheButtonInfo( url , ico  ) ); // add to the output list
                         }
-                    }                    }
-            }
-            else{
+                    }
+                }
+            } else {
                 QString thumb = f.left( f .length() - 5) +"def.png";
                 if (QFile(thumb).exists()) { // if a png thumbnail exists
                     QImageReader *imageReader = new QImageReader(thumb);
@@ -169,7 +168,7 @@ int main(int argc, char *argv[]) {
         size_t found = label.find_last_of("/");
         label = label.substr(found+1);
         QString qstr = QString::fromStdString(label);
-        buttonLabel->setText(qstr);
+        buttonLabel->setText(qstr); //adds a label with the filename underneath each thumbnail
         layout->addWidget(button,0,i);
         layout->addWidget(buttonLabel,1,i);
         button->init(&videos.at(i));
@@ -183,15 +182,16 @@ int main(int argc, char *argv[]) {
 
     volumeSlider->connect(volumeSlider, SIGNAL(valueChanged(int)), player, SLOT(setVolume(int)));
     volumeSlider->connect(volumeSlider, SIGNAL(valueChanged(int)), muteButton, SLOT (changeIcon(int)));
-
+    //volume slider changing is connected to the player and the mute button
     muteButton->connect(muteButton, SIGNAL(mute(bool)), player, SLOT(setMuted(bool)));
     muteButton->connect(muteButton, SIGNAL(moveSlider(int)), volumeSlider, SLOT (moveSlider(int)));
-
+    //mute button is connected to the player and slider
     VideoSlider *videoSlider = new VideoSlider(buttonWidget);
 
     player->connect(player, SIGNAL(durationChanged(qint64)), videoSlider, SLOT (SetRange(qint64)));
     player->connect(player, SIGNAL(positionChanged(qint64)), videoSlider, SLOT (SetValue(qint64)));
     videoSlider->connect(videoSlider, SIGNAL(valueChanged(int)), player, SLOT (SetPosition(int)));
+    //player and video slider are mutually connected
 
     ForwardButton *forwardSkipBtn = new ForwardButton(buttonWidget);
     BackwardButton *backwardSkipBtn = new BackwardButton(buttonWidget);
@@ -199,6 +199,7 @@ int main(int argc, char *argv[]) {
 
     forwardSkipBtn->connect(forwardSkipBtn, SIGNAL(clicked(bool)), player, SLOT(skipBack(bool)));
     backwardSkipBtn->connect(backwardSkipBtn, SIGNAL(clicked(bool)), player, SLOT(skipForward(bool)));
+    //skip buttons connected to the player
 
     playBtn->connect(playBtn, SIGNAL(clicked(bool)), player, SLOT (click(bool)));
     player->connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), playBtn, SLOT (setState(QMediaPlayer::State)));
@@ -210,12 +211,14 @@ int main(int argc, char *argv[]) {
 
     player->connect(player, SIGNAL(positionChanged(qint64)), length_label, SLOT (setLength(qint64)));
     player->connect(player, SIGNAL(durationChanged(qint64)), duration_label, SLOT (setLength(qint64)));
+    //as video changes, length and duration labels will change
 
-    videoWidget->setFullScreen(false);
+    videoWidget->setFullScreen(false); //starts off not in fullscreen
 
     FullScreenButton *fullScreen = new FullScreenButton(buttonWidget);
 
     fullScreen->connect(fullScreen, SIGNAL(clicked(bool)), videoWidget, SLOT (setFullScr(bool)));
+    //button connected to the video, to set it to fullscreen
 
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);

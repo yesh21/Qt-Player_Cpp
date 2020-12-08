@@ -14,10 +14,9 @@ class LengthLabel : public QLabel {
     Q_OBJECT
 public:
         LengthLabel(QWidget *parent) :  QLabel(parent) {
-
    }
 private slots:
-        void setLength(qint64);
+        void setLength(qint64); //slot to set the duration of the current video
 private:
     bool playValue;
 };

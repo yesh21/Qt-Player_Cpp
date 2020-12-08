@@ -12,12 +12,12 @@ class VideoSlider : public QSlider {
 public:
     VideoSlider(QWidget *parent) :  QSlider(Qt::Horizontal, parent) {
         setTracking(true);
-        setRange(0,0);
+        setRange(0,0); //range is initially set to 0
    }
 
 private slots:
     void SetValue(qint64 volume);
-    void SetRange(qint64 volume);
+    void SetRange(qint64 volume); //this slot is used to set slider range to the correct duration
 };
 
 #endif // VIDEO_SLIDER_H
