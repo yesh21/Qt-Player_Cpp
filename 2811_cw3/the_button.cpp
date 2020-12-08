@@ -4,6 +4,7 @@
 
 #include "the_button.h"
 #include <QFileInfo>
+#include <QtDebug>
 
 
 void TheButton::init(TheButtonInfo* i) {
