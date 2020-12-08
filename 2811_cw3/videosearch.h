@@ -7,6 +7,7 @@
 #include <QLineEdit>
 #include <vector>
 #include "the_button.h"
+#include <QLabel>
 
 using namespace std;
 
@@ -23,6 +24,15 @@ public:
     vector<TheButtonInfo> _allVideos;
 private slots:
     void search(QString text);
+};
+
+class label : public QLabel {
+    Q_OBJECT
+public:
+    label() : QLabel() {
+    }
+private slots:
+    void searchlabel(QString text);
 };
 
 #endif // VIDEOSEARCH_H

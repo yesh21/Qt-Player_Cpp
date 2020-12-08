@@ -13,3 +13,12 @@ void videoSearch::search(QString text) {
         }
     }
 }
+
+void label::searchlabel(QString text){
+    if (text == "") {
+        setVisible(true);
+    }
+    else{
+        setVisible(false);
+    }
+}

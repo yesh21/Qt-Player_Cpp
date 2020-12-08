@@ -161,10 +161,13 @@ int main(int argc, char *argv[]) {
 
     for ( int i = 0; i < static_cast<int>(searchBox->_filteredVideos.size()); i++ ) {
         TheButton *button = new TheButton(buttonWidget);
-        QLabel *buttonLabel = new QLabel();
+        label *buttonLabel = new label();
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         searchBox->connect(searchBox,SIGNAL(textChanged(QString) ),button, SLOT(searchBtn(QString)));
+        searchBox->connect(searchBox,SIGNAL(textChanged(QString) ),buttonLabel, SLOT(searchlabel(QString)));
         buttons.push_back(button);
+
+        //as it shows filtered videos according to search
         QString Qstr = searchBox->_filteredVideos.at(i).url->toString();
         string label = Qstr.toStdString();
         size_t found = label.find_last_of("/");
