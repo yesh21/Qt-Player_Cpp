@@ -221,6 +221,7 @@ int main(int argc, char *argv[]) {
     videoWidget->setFullScreen(false); //starts off not in fullscreen
 
     FullScreenButton *fullScreen = new FullScreenButton(buttonWidget);
+    muteButton->click();
 
     fullScreen->connect(fullScreen, SIGNAL(clicked(bool)), videoWidget, SLOT (setFullScr(bool)));
     //button connected to the video, to set it to fullscreen
