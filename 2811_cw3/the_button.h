@@ -34,6 +34,7 @@ public:
 
 private slots:
     void clicked();
+    void searchBtn(QString text);
 
 signals:
     void jumpTo(TheButtonInfo*);

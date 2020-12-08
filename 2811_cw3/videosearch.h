@@ -15,8 +15,9 @@ class videoSearch : public QLineEdit {
 public:
     videoSearch(vector<TheButtonInfo> videos, QWidget *parent) : QLineEdit(parent) {
         _allVideos = videos;
+        _filteredVideos = videos;
     }
-private:
+public:
     vector<TheButtonInfo> _filteredVideos;
     vector<TheButtonInfo> _allVideos;
 private slots:

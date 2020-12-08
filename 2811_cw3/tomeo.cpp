@@ -157,13 +157,15 @@ int main(int argc, char *argv[]) {
     QLineEdit *searchBoxParent = new QLineEdit();
     videoSearch *searchBox = new videoSearch(videos, searchBoxParent);
     //need to connect here and update the videos vector to _videos from the searchBox object
+    searchBox->connect(searchBox,SIGNAL(textChanged(QString) ),searchBox,SLOT(search(QString)));
 
-    for ( int i = 0; i < static_cast<int>(videos.size()); i++ ) {
+    for ( int i = 0; i < static_cast<int>(searchBox->_filteredVideos.size()); i++ ) {
         TheButton *button = new TheButton(buttonWidget);
         QLabel *buttonLabel = new QLabel();
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
+        searchBox->connect(searchBox,SIGNAL(textChanged(QString) ),button, SLOT(searchBtn(QString)));
         buttons.push_back(button);
-        QString Qstr = videos.at(i).url->toString();
+        QString Qstr = searchBox->_filteredVideos.at(i).url->toString();
         string label = Qstr.toStdString();
         size_t found = label.find_last_of("/");
         label = label.substr(found+1);
@@ -171,7 +173,7 @@ int main(int argc, char *argv[]) {
         buttonLabel->setText(qstr); //adds a label with the filename underneath each thumbnail
         layout->addWidget(button,0,i);
         layout->addWidget(buttonLabel,1,i);
-        button->init(&videos.at(i));
+        button->init(&searchBox->_filteredVideos.at(i));
     }
     inner->setLayout(layout);
     videoScroller->setWidget(inner);
