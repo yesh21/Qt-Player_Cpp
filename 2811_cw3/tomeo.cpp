@@ -31,6 +31,7 @@
 #include <QPushButton>
 #include <QFrame>
 #include <QLineEdit>
+#include <QComboBox>
 #include "player_layout.h"
 #include "volume.h"
 #include "video_slider.h"
@@ -152,6 +153,8 @@ int main(int argc, char *argv[]) {
 
 
     QScrollArea *videoScroller = new QScrollArea();
+    videoScroller->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    videoScroller->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     QFrame *inner = new QFrame(videoScroller);
 
     QLineEdit *searchBoxParent = new QLineEdit();
@@ -226,6 +229,17 @@ int main(int argc, char *argv[]) {
     fullScreen->connect(fullScreen, SIGNAL(clicked(bool)), videoWidget, SLOT (setFullScr(bool)));
     //button connected to the video, to set it to fullscreen
 
+    QComboBox *playrate = new QComboBox(buttonWidget);
+    // for selecting playrate
+
+    playrate->addItem("0.5x speed",QVariant(0.5));
+    playrate->addItem("1x speed",QVariant(1));
+    playrate->addItem("2x speed",QVariant(2));
+    playrate->addItem("4x speed",QVariant(4));
+    playrate->setCurrentIndex(1);
+
+    //connected combobox with playrate settting slot
+    playrate->connect(playrate,SIGNAL(activated(int)),player, SLOT(doPlayRate(int)));
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
@@ -249,6 +263,7 @@ int main(int argc, char *argv[]) {
     top->addWidget(duration_label);
     top->addWidget(fullScreen);
     top->addWidget(searchBox);
+    top->addWidget(playrate);
 
     // showtime!
     window.show();

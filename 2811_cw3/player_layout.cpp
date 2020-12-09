@@ -35,12 +35,11 @@ void ResponsiveLayout::setGeometry(const QRect &r) {
             LengthLabel *lengthLabel = dynamic_cast<LengthLabel *>(o->widget());
             FullScreenButton *fullScreen = dynamic_cast<FullScreenButton *>(o->widget());
             videoSearch *searchBox = dynamic_cast<videoSearch *>(o->widget());
+            QComboBox *playrate = dynamic_cast<QComboBox *>(o->widget());
             if(qw) {
-                qw->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-                qw->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
                 qw->setGeometry(0+r.x(),r.height()-175+r.y(),r.width(), 165);
             } else if(fullScreen) {
-                fullScreen->setGeometry(r.width()-130,(0.625)*r.height()+10,120, 60);
+                fullScreen->setGeometry(r.width()-130,(0.625)*r.height()-25,120, 40);
             } else if(videoWidget && !videoWidget->isFullScreen()) {
                    videoWidget->setGeometry(0+r.x(),0,r.width(), 0.625*r.height()-35);
             } else if(videoWidget && videoWidget->isFullScreen()) {
@@ -50,7 +49,7 @@ void ResponsiveLayout::setGeometry(const QRect &r) {
             } else if(volumeSlider) {
                 volumeSlider->setGeometry(460+r.x(),(0.625)*r.height()+25,r.width()-600, 30);
             } else if(videoSlider) {
-                videoSlider->setGeometry(r.x()+5,(0.625)*r.height()-25,r.width()-125, 30);
+                videoSlider->setGeometry(r.x()+5,(0.625)*r.height()-25,r.width()-255, 30);
             } else if(forwardSkipBtn) {
                 forwardSkipBtn->setGeometry(195+r.x(),(0.625)*r.height()+10,60, 60);
             } else if(playBtn) {
@@ -59,10 +58,12 @@ void ResponsiveLayout::setGeometry(const QRect &r) {
                 backwardSkipBtn->setGeometry(325+r.x(),(0.625)*r.height()+10,60, 60);
             } else if (searchBox) {
                 searchBox->setGeometry(10, (0.625)*r.height()+15, 180, 50);
+            } else if (playrate) {
+                playrate->setGeometry(r.width()-130,(0.625)*r.height()+25,120, 40);
             } else if(lengthLabel->whatsThis()=="length_label") {
-                lengthLabel->setGeometry(r.width()-100,(0.625)*r.height()-25,60, 30);
+                lengthLabel->setGeometry(r.width()-230,(0.625)*r.height()-25,60, 30);
             } else if(lengthLabel->whatsThis()=="duration_label") {
-                lengthLabel->setGeometry(r.width()-40,(0.625)*r.height()-25,60, 30);
+                lengthLabel->setGeometry(r.width()-170,(0.625)*r.height()-25,60, 30);
             }
         }
         catch (bad_cast) {

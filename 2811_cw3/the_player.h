@@ -28,7 +28,6 @@ public:
     ThePlayer() : QMediaPlayer(NULL) {
         setVolume(0); // be slightly less annoying
         connect (this, SIGNAL (stateChanged(QMediaPlayer::State)), this, SLOT (playStateChanged(QMediaPlayer::State)) );
-
         mTimer = new QTimer(NULL);
         mTimer->setInterval(1000); // 1000ms is one second between ...
         mTimer->start();
@@ -51,6 +50,7 @@ public slots:
     void skipForward(bool skip);
     //slots used for our skip buttons
     void click(bool playValue); //slot for the play/pause button
+    void doPlayRate(int x);
 
 private:
     bool playValue = false;
