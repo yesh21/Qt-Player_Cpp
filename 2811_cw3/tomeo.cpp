@@ -248,11 +248,11 @@ int main(int argc, char *argv[]) {
 
     QFrame *frame = new QFrame();
     QHBoxLayout *buttonsBox = new QHBoxLayout();
-    buttonsBox->addWidget(backBtn);
     buttonsBox->addWidget(forwardSkipBtn);
+    buttonsBox->addWidget(backBtn);
     buttonsBox->addWidget(playBtn);
-    buttonsBox->addWidget(backwardSkipBtn);
     buttonsBox->addWidget(nextBtn);
+    buttonsBox->addWidget(backwardSkipBtn);
     buttonsBox->addWidget(muteButton);
     frame->setLayout(buttonsBox);
     //added a frame to set all buttons in hboxlayout
