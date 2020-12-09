@@ -31,9 +31,6 @@ void ThePlayer::jumpTo (TheButtonInfo* button) {
 
 void ThePlayer::SetPosition(int pos) {
     setPosition(pos);
-    if(position()==0){
-        nextVideo();
-    }
 }
 
 void ThePlayer::skipBack(bool skip) {
@@ -62,6 +59,9 @@ void ThePlayer::click(bool click) {
 }
 
 void ThePlayer::doPlayRate(int rate) {
+    if(position()==0){
+        nextVideo();
+    }
     if(rate ==0){
        setPlaybackRate(0.5);
     } else if(rate ==1){
