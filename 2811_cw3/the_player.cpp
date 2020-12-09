@@ -29,8 +29,11 @@ void ThePlayer::jumpTo (TheButtonInfo* button) {
     play();
 }
 
-void ThePlayer::SetPosition(int position) {
-    setPosition(position);
+void ThePlayer::SetPosition(int pos) {
+    setPosition(pos);
+    if(position()==0){
+        nextVideo();
+    }
 }
 
 void ThePlayer::skipBack(bool skip) {
