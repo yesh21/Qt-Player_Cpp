@@ -25,6 +25,9 @@ private:
     long updateCount = 0;
 
 public:
+    size_t videoindex = 0;
+
+public:
     ThePlayer() : QMediaPlayer(NULL) {
         setVolume(0); // be slightly less annoying
         connect (this, SIGNAL (stateChanged(QMediaPlayer::State)), this, SLOT (playStateChanged(QMediaPlayer::State)) );
@@ -51,6 +54,8 @@ public slots:
     //slots used for our skip buttons
     void click(bool playValue); //slot for the play/pause button
     void doPlayRate(int x);
+    void nextVideo();
+    void prevVideo();
 
 private:
     bool playValue = false;

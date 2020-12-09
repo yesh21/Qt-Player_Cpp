@@ -25,6 +25,7 @@ void ThePlayer::playStateChanged (QMediaPlayer::State ms) {
 
 void ThePlayer::jumpTo (TheButtonInfo* button) {
     setMedia( * button -> url);
+    videoindex = button->indexnum;
     play();
 }
 
@@ -67,4 +68,25 @@ void ThePlayer::doPlayRate(int rate) {
     } else if(rate ==3){
        setPlaybackRate(4);
     }
+}
+
+void ThePlayer::nextVideo(){
+    videoindex++;
+    if(videoindex>=infos->size()){
+        videoindex=0;
+    }
+    buttons->at(videoindex)->click();
+}
+
+void ThePlayer::prevVideo(){
+    if(position()>1500){
+        setPosition(0);
+    }else{
+        if(videoindex==0){
+            videoindex=infos->size()-1;
+        }else{
+            videoindex--;
+        }
+    }
+    buttons->at(videoindex)->click();
 }

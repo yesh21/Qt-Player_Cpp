@@ -41,6 +41,7 @@
 #include "video_widget.h"
 #include "fullscreen_button.h"
 #include "videosearch.h"
+#include "nextvideo_button.h"
 
 using namespace std;
 
@@ -50,7 +51,7 @@ vector<TheButtonInfo> getInfoIn (string loc) {
     vector<TheButtonInfo> out =  vector<TheButtonInfo>();
     QDir dir(QString::fromStdString(loc) );
     QDirIterator it(dir);
-
+     int index = 0;
     while (it.hasNext()) { // for all files
 
         QString f = it.next();
@@ -70,7 +71,7 @@ vector<TheButtonInfo> getInfoIn (string loc) {
                 if (!sprite.isNull()) {
                     QIcon* ico = new QIcon(QPixmap::fromImage(sprite)); // voodoo to create an icon for the button
                     QUrl* url = new QUrl(QUrl::fromLocalFile( f )); // convert the file location to a generic url
-                    out . push_back(TheButtonInfo( url , ico  ) ); // add to the output list
+                    out . push_back(TheButtonInfo( url , ico ,index ) ); // add to the output list
                 } else {
                     QString thumb = f.left( f .length() - 5) +"def.png";
                     if (QFile(thumb).exists()) { // if a png thumbnail exists
@@ -79,7 +80,7 @@ vector<TheButtonInfo> getInfoIn (string loc) {
                         if (!sprite.isNull()) {
                             QIcon* ico = new QIcon(QPixmap::fromImage(sprite)); // voodoo to create an icon for the button
                             QUrl* url = new QUrl(QUrl::fromLocalFile( f )); // convert the file location to a generic url
-                            out . push_back(TheButtonInfo( url , ico  ) ); // add to the output list
+                            out . push_back(TheButtonInfo( url , ico ,index  ) ); // add to the output list
                         }
                     }
                 }
@@ -91,10 +92,10 @@ vector<TheButtonInfo> getInfoIn (string loc) {
                     if (!sprite.isNull()) {
                         QIcon* ico = new QIcon(QPixmap::fromImage(sprite)); // voodoo to create an icon for the button
                         QUrl* url = new QUrl(QUrl::fromLocalFile( f )); // convert the file location to a generic url
-                        out . push_back(TheButtonInfo( url , ico  ) ); // add to the output list
+                        out . push_back(TheButtonInfo( url , ico ,index  ) ); // add to the output list
                     }
                 }
-            }
+            }index++;
             }
     }
 
@@ -212,6 +213,13 @@ int main(int argc, char *argv[]) {
     playBtn->connect(playBtn, SIGNAL(clicked(bool)), player, SLOT (click(bool)));
     player->connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), playBtn, SLOT (setState(QMediaPlayer::State)));
 
+    NextButton *nextBtn = new NextButton(buttonWidget);
+    PrevButton *backBtn = new PrevButton(buttonWidget);
+
+    nextBtn->connect(nextBtn, SIGNAL(clicked()), player, SLOT(nextVideo()));
+    backBtn->connect(backBtn, SIGNAL(clicked()), player, SLOT(prevVideo()));
+    //this buttons connected to the player so it goes to next button while clicked
+
     LengthLabel *length_label = new LengthLabel(buttonWidget);
     LengthLabel *duration_label = new LengthLabel(buttonWidget);
     duration_label->setWhatsThis("duration_label");
@@ -238,6 +246,18 @@ int main(int argc, char *argv[]) {
     playrate->addItem("4x speed",QVariant(4));
     playrate->setCurrentIndex(1);
 
+    QFrame *frame = new QFrame();
+    QHBoxLayout *buttonsBox = new QHBoxLayout();
+    buttonsBox->addWidget(backBtn);
+    buttonsBox->addWidget(forwardSkipBtn);
+    buttonsBox->addWidget(playBtn);
+    buttonsBox->addWidget(backwardSkipBtn);
+    buttonsBox->addWidget(nextBtn);
+    buttonsBox->addWidget(muteButton);
+    frame->setLayout(buttonsBox);
+    //added a frame to set all buttons in hboxlayout
+    frame->setWhatsThis("buttons");
+
     //connected combobox with playrate settting slot
     playrate->connect(playrate,SIGNAL(activated(int)),player, SLOT(doPlayRate(int)));
     // tell the player what buttons and videos are available
@@ -253,17 +273,14 @@ int main(int argc, char *argv[]) {
     // add the video and the buttons to the top level widget
     top->addWidget(videoWidget);
     top->addWidget(videoScroller);
-    top->addWidget(muteButton);
     top->addWidget(volumeSlider);
     top->addWidget(videoSlider);
-    top->addWidget(forwardSkipBtn);
-    top->addWidget(playBtn);
-    top->addWidget(backwardSkipBtn);
     top->addWidget(length_label);
     top->addWidget(duration_label);
     top->addWidget(fullScreen);
     top->addWidget(searchBox);
     top->addWidget(playrate);
+    top->addWidget(frame);
 
     // showtime!
     window.show();

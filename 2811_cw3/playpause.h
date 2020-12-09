@@ -13,6 +13,7 @@ class PlayButton : public QPushButton {
 public:
     PlayButton(QWidget *parent) :  QPushButton( parent) {
         setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+        setFixedSize(40,40);
         //we use the QStyle in built icons for our play button
    }
 private slots:

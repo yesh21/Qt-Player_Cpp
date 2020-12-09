@@ -11,6 +11,7 @@ class ForwardButton : public QPushButton {
 public:
     ForwardButton(QWidget *parent) :  QPushButton( parent) {
         setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
+        setFixedSize(40,40);
    }
 
 };
@@ -20,6 +21,7 @@ class BackwardButton : public QPushButton {
 public:
     BackwardButton(QWidget *parent) :  QPushButton( parent) {
         setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
+        setFixedSize(40,40);
    }
 
 };

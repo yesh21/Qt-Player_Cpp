@@ -13,7 +13,8 @@ class VolumeButton : public QPushButton {
 
 public:
      VolumeButton(QWidget *parent) :  QPushButton(parent) {
-         setIconSize(QSize(60,60));
+         setIconSize(QSize(40,40));
+         setFixedSize(40,40);
          setIcon(style()->standardIcon(QStyle::SP_MediaVolumeMuted));
          //qstyle used to set button icon
          connect(this, SIGNAL(released()), this, SLOT (clicked()));

@@ -21,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     fullscreen_button.h \
+    nextvideo_button.h \
     player_layout.h \
     playpause.h \
     the_button.h \
