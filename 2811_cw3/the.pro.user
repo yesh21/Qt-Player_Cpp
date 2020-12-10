@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.2, 2020-12-10T14:25:54. -->
+<!-- Written by QtCreator 4.13.2, 2020-12-10T14:27:50. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -325,8 +325,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/Nicholas/University/2nd Year/User Interface/CWK3/beta/ui_cwk3/ui_cwk3/2811_cw3/the.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/Nicholas/University/2nd Year/User Interface/CWK3/beta/ui_cwk3/ui_cwk3/2811_cw3/the.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">the2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/Nicholas/University/2nd Year/User Interface/CWK3/beta/ui_cwk3/2811_cw3/the.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/Nicholas/University/2nd Year/User Interface/CWK3/beta/ui_cwk3/2811_cw3/the.pro</value>
     <value type="QString" key="RunConfiguration.Arguments">&quot;D:\Nicholas\University\2nd Year\User Interface\CWK3\videos&quot;</value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>
@@ -337,7 +338,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default"></value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/Nicholas/University/2nd Year/User Interface/CWK3/beta/ui_cwk3/ui_cwk3/build-the-Desktop_Qt_5_15_1_MinGW_64_bit-Debug</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

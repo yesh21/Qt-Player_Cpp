@@ -240,13 +240,17 @@ int main(int argc, char *argv[]) {
     QComboBox *playrate = new QComboBox(buttonWidget);
     // for selecting playrate
 
-    /*
     playrate->addItem("0.5x speed",QVariant(0.5));
     playrate->addItem("1x speed",QVariant(1));
     playrate->addItem("2x speed",QVariant(2));
     playrate->addItem("4x speed",QVariant(4));
     playrate->setCurrentIndex(1);
-    */
+
+    //sort by combo box
+    QComboBox *sortby = new QComboBox(buttonWidget);
+    sortby->addItem("A-Z");
+    sortby->addItem("Date");
+
     QFrame *frame = new QFrame();
     QHBoxLayout *buttonsBox = new QHBoxLayout();
     buttonsBox->addWidget(forwardSkipBtn);
@@ -269,7 +273,7 @@ int main(int argc, char *argv[]) {
     ResponsiveLayout *top = new ResponsiveLayout();
     window.setLayout(top);
     window.setWindowTitle("tomeo");
-    window.setMinimumSize(800, 680);
+    window.setMinimumSize(800, 800);
 
     // add the video and the buttons to the top level widget
     top->addWidget(videoWidget);
@@ -280,6 +284,8 @@ int main(int argc, char *argv[]) {
     top->addWidget(duration_label);
     top->addWidget(fullScreen);
     top->addWidget(searchBox);
+    top->addWidget(sortby);
+    top->addWidget(playrate);
     top->addWidget(frame);
 
     // showtime!

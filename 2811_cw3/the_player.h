@@ -51,6 +51,7 @@ public slots:
     void SetPosition(int position); //slot used for our video slider
     void skipBack(bool skip);
     void skipForward(bool skip);
+    void doPlayRate(int x);
     //slots used for our skip buttons
     void click(bool playValue); //slot for the play/pause button
     void nextVideo();
