@@ -251,6 +251,7 @@ int main(int argc, char *argv[]) {
     sortby->addItem("A-Z");
     sortby->addItem("Date");
 
+
     QFrame *frame = new QFrame();
     QHBoxLayout *buttonsBox = new QHBoxLayout();
     buttonsBox->addWidget(forwardSkipBtn);

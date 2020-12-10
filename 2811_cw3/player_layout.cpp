@@ -52,7 +52,7 @@ void ResponsiveLayout::setGeometry(const QRect &r) {
             } else if (searchBox) {
                 searchBox->setGeometry(10, r.height()-230+r.y(), 180, 50);
             } else if (sortby) {
-                searchBox->setGeometry(210, (0.625)*r.height()+80, 180, 50);
+                sortby->setGeometry(210, r.height()-230+r.y(), 180, 50);
             } else if(frame->whatsThis()=="length_label") {
                 frame->setGeometry(r.width()-230,(0.625)*r.height()-25,60, 30);
             } else if(frame->whatsThis()=="duration_label") {
