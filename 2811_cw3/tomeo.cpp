@@ -245,11 +245,13 @@ int main(int argc, char *argv[]) {
     playrate->addItem("2x speed",QVariant(2));
     playrate->addItem("4x speed",QVariant(4));
     playrate->setCurrentIndex(1);
+    playrate->setWhatsThis("playrate");
 
     //sort by combo box
     QComboBox *sortby = new QComboBox(buttonWidget);
     sortby->addItem("A-Z");
     sortby->addItem("Date");
+    sortby->setWhatsThis("sortby");
 
 
     QFrame *frame = new QFrame();
