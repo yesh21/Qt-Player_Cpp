@@ -32,7 +32,7 @@ void ResponsiveLayout::setGeometry(const QRect &r) {
             QSlider *videoSlider = dynamic_cast<QSlider *>(o->widget());
             FullScreenButton *fullScreen = dynamic_cast<FullScreenButton *>(o->widget());
             videoSearch *searchBox = dynamic_cast<videoSearch *>(o->widget());
-            QComboBox *playrate = dynamic_cast<QComboBox *>(o->widget());
+            //QComboBox *playrate = dynamic_cast<QComboBox *>(o->widget());
 
             if(qw) {
                 qw->setGeometry(0+r.x(),r.height()-175+r.y(),r.width(), 165);
@@ -43,14 +43,12 @@ void ResponsiveLayout::setGeometry(const QRect &r) {
             } else if(videoWidget && videoWidget->isFullScreen()) {
                    videoWidget->showFullScreen();
             } else if(volumeSlider) {
-                volumeSlider->setGeometry(460+r.x(),(0.625)*r.height()+25,r.width()-600, 30);
+                volumeSlider->setGeometry(460+r.x(),(0.625)*r.height()+25,r.width()-475, 30);
             } else if(videoSlider) {
                 videoSlider->setGeometry(r.x()+5,(0.625)*r.height()-25,r.width()-255, 30);
             } else if (searchBox) {
                 searchBox->setGeometry(10, (0.625)*r.height()+15, 180, 50);
-            } else if (playrate) {
-                playrate->setGeometry(r.width()-130,(0.625)*r.height()+25,120, 40);
-            } else if(frame->whatsThis()=="length_label") {
+            }  else if(frame->whatsThis()=="length_label") {
                 frame->setGeometry(r.width()-230,(0.625)*r.height()-25,60, 30);
             } else if(frame->whatsThis()=="duration_label") {
                 frame->setGeometry(r.width()-170,(0.625)*r.height()-25,60, 30);

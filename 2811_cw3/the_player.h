@@ -53,7 +53,6 @@ public slots:
     void skipForward(bool skip);
     //slots used for our skip buttons
     void click(bool playValue); //slot for the play/pause button
-    void doPlayRate(int x);
     void nextVideo();
     void prevVideo();
 

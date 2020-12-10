@@ -240,12 +240,13 @@ int main(int argc, char *argv[]) {
     QComboBox *playrate = new QComboBox(buttonWidget);
     // for selecting playrate
 
+    /*
     playrate->addItem("0.5x speed",QVariant(0.5));
     playrate->addItem("1x speed",QVariant(1));
     playrate->addItem("2x speed",QVariant(2));
     playrate->addItem("4x speed",QVariant(4));
     playrate->setCurrentIndex(1);
-
+    */
     QFrame *frame = new QFrame();
     QHBoxLayout *buttonsBox = new QHBoxLayout();
     buttonsBox->addWidget(forwardSkipBtn);
@@ -259,7 +260,7 @@ int main(int argc, char *argv[]) {
     frame->setWhatsThis("buttons");
 
     //connected combobox with playrate settting slot
-    playrate->connect(playrate,SIGNAL(activated(int)),player, SLOT(doPlayRate(int)));
+    //playrate->connect(playrate,SIGNAL(activated(int)),player, SLOT(doPlayRate(int)));
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
 
@@ -279,7 +280,6 @@ int main(int argc, char *argv[]) {
     top->addWidget(duration_label);
     top->addWidget(fullScreen);
     top->addWidget(searchBox);
-    top->addWidget(playrate);
     top->addWidget(frame);
 
     // showtime!
