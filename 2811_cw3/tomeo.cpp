@@ -178,8 +178,8 @@ int main(int argc, char *argv[]) {
         label = label.substr(found+1);
         QString qstr = QString::fromStdString(label);
         buttonLabel->setText(qstr); //adds a label with the filename underneath each thumbnail
-        layout->addWidget(button,0,i);
-        layout->addWidget(buttonLabel,1,i);
+        layout->addWidget(button,2*(i/2),i%2);
+        layout->addWidget(buttonLabel,2*(i/2)+1,i%2);
         button->init(&videos.at(i));
     }
     inner->setLayout(layout);
